@@ -25,4 +25,4 @@ emapper.py -i ${input} --output_dir ${od} -o emapper --cpu 16 --itype proteins -
 # input sequences are proteins only
 # DIAMOND for fast protein similarity searches 
 # E-value cutoff for functional annotations
-# Restricts Gene Ontology (GO) term 
+# Restricts Gene Ontology (GO) term
