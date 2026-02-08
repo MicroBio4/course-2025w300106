@@ -16,14 +16,13 @@ module list
 ## VARIABLES
 wd="/lisc/data/scratch/course/2025w300106/joge"
 outDir="$wd/results/trimmomatic"
+mkdir -p $outDir
 
 ## EXECUTION
 echo "Started job at $(date)"
-mkdir -p $outDir
-
 trimmomatic PE -threads 4 -summary $outDir/summary \
   $wd/SRR35988120.fastq
   -baseout $outDir/SRR35988120_ \
-  ILLUMINACLIP:$wd/trim_adapters.fa:2:30:10 \
+  ILLUMINACLIP:/lisc/opt/sw/software/Trimmomatic/0.40-Java-17/adapters/TruSeq3-PE.fa:2:30:10 \
   SLIDINGWINDOW:4:20 MINLEN:75
 echo "Job finished at $(date)" 
