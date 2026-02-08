@@ -1,0 +1,34 @@
+#!/bin/bash
+
+#SBATCH --job-name=stringtie
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=2
+#SBATCH --mem=5G
+#SBATCH --time=1:00:00
+#SBATCH --output=/lisc/data/scratch/course/2025w300106/joge/logs/stringtie.%j.log
+#SBATCH --error=/lisc/data/scratch/course/2025w300106/joge/logs/stringtie.%j.err
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=shubham.shubham04@gmail.ccom
+
+## ENVIRONMENT
+module load StringTie
+module list
+
+## VARIABLES
+path="/lisc/data/scratch/course/2025w300106/joge"
+inBam="$path/results/STAR_trimmed/SRR35988120_Aligned.sortedByCoord.out.bam"
+outDir="$path/results/StringTie"
+
+## EXECUTION
+echo "Started job at $(date)"
+mkdir -p $outDir
+
+stringtie $inBam -l ASM -o $outDir/bioDataAnalysis_ASM.gtf -p 4 -j 5 -g 200 -m 200
+
+echo "Job finished at $(date)"
+
+# -l setting transcript ID prefix.
+# -o setting output, GTF file with assembled transcripts.
+# -j a splice junction must be supported by at least 5 reads, otherwise remove.
+# -g if two clusters of reads are separated by > 200 bp with no coverage otherwise are treated as different genes.
+# -m transcripts larger than 200 bp.
