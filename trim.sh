@@ -13,10 +13,6 @@
 module load Trimmomatic
 module list
 
-### ENVIRONMENT
-module load Trimmomatic
-module list
-
 ## VARIABLES
 wd="/lisc/data/scratch/course/2025w300106/joge"
 outDir="$wd/results/trimmomatic"
